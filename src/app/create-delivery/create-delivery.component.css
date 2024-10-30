@@ -1,0 +1,120 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top: 8px solid #ffffff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.package-list {
+  padding: 20px;
+  position: relative;
+}
+
+.description {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.package-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.package-list li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.package-list li.selected {
+  background-color: #e0f7fa;
+}
+
+.button-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-delivery-btn,
+.create-package-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.create-delivery-btn {
+  background-color: #007bff; /* Primary color */
+}
+
+.create-delivery-btn:hover {
+  background-color: #0056b3; /* Darker shade */
+  transform: translateY(-2px);
+}
+
+.create-package-btn {
+  background-color: #28a745; /* Success color */
+}
+
+.create-package-btn:hover {
+  background-color: #218838; /* Darker shade */
+  transform: translateY(-2px);
+}
+
+.load-more {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007bff; /* Light red background */
+  color: #ffffff; /* Dark red text */
+  padding: 15px;
+  border: 1px solid #007bff; /* Border color */
+  border-radius: 5px;
+  z-index: 1001; /* Ensure it is above other content */
+  width: 80%; /* Adjust width as needed */
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}

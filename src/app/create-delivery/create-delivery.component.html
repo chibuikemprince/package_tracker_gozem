@@ -1,0 +1,45 @@
+<div class="overlay" *ngIf="loading">
+  <div class="spinner"></div>
+</div>
+
+  <div *ngIf="alertMessage.length > 0" class="alert">{{ alertMessage }}</div>
+
+  
+<div class="package-list">
+  <h2>Packages</h2>
+  <p class="description">
+    Click on any package and then click "Create Delivery" to start the delivery
+    process.
+  </p>
+
+  <ul>
+    <li
+      *ngFor="let package of packages"
+      (click)="selectPackage(package)"
+      [class.selected]="selectedPackage?._id === package._id"
+    >
+      <h3>{{ package.description }}</h3>
+      <p>Weight: {{ package.weight }} kg</p>
+      <p>From: {{ package.from_name }}, {{ package.from_address }}</p>
+      <p>To: {{ package.to_name }}, {{ package.to_address }}</p>
+    </li>
+  </ul>
+
+  <div class="button-container">
+    <button
+      *ngIf="selectedPackage"
+      (click)="createDelivery()"
+      class="create-delivery-btn"
+    >
+      Create Delivery
+    </button>
+    <a routerLink="/create-package" class="create-package-btn"
+      >Create New Package</a
+    >
+  </div>
+
+  <div *ngIf="loadMoreVisible" (click)="loadMore()" class="load-more">
+    Load More
+  </div>
+
+</div>

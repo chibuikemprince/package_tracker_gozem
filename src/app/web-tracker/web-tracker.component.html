@@ -1,0 +1,104 @@
+<div class="container">
+  <h1>Package Tracking</h1>
+  <!-- Alert Message -->
+  <div *ngIf="APIErrors" class="alert" role="alert">
+    {{ apimessage }}
+  </div>
+  <div class="input-section">
+    <input
+      type="text"
+      class="package-input"
+      placeholder="Enter Package ID"
+      [(ngModel)]="packageId"
+    />
+    <button class="track-btn" (click)="trackPackage()">Track</button>
+  </div>
+
+  <div *ngIf="packageFetched && APIErrors == false" class="details-section">
+    <div class="left-section">
+      <div class="package-details">
+        <h2>Package Details</h2>
+        <p>
+          <strong>Description:</strong>
+          {{ packageDetails?.description ?? "N/A" }}
+        </p>
+        <p><strong>Weight:</strong> {{ packageDetails?.weight ?? "N/A" }} kg</p>
+        <p>
+          <strong>Dimensions (width x height x depth):</strong>
+          {{ packageDetails?.width ?? "N/A" }} x
+          {{ packageDetails?.height ?? "N/A" }} x
+          {{ packageDetails?.depth ?? "N/A" }} cm
+        </p>
+        <p>
+          <strong>From:</strong> {{ packageDetails?.from_name ?? "N/A" }},
+          {{ packageDetails?.from_address ?? "N/A" }}
+        </p>
+        <p>
+          <strong>To:</strong> {{ packageDetails?.to_name ?? "N/A" }},
+          {{ packageDetails?.to_address ?? "N/A" }}
+        </p>
+      </div>
+
+      <div *ngIf="isDeliveryOn; else noDelivery" class="delivery-details">
+        <h2>Delivery Information</h2>
+        <p>
+          <strong>Package ID:</strong>
+          {{ deliveryDetails?._id }}
+        </p>
+        <p>
+          <strong>Pickup Time:</strong>
+          {{
+            deliveryDetails?.pickup_time
+              ? deliveryDetails?.pickup_time
+              : "Not picked up"
+          }}
+        </p>
+        <p>
+          <strong>Start Time:</strong>
+          {{
+            deliveryDetails?.start_time ? deliveryDetails?.start_time : "N/A"
+          }}
+        </p>
+        <p>
+          <strong>End Time:</strong>
+          {{
+            deliveryDetails?.end_time
+              ? deliveryDetails?.end_time
+              : "Not delivered yet"
+          }}
+        </p>
+        <p>
+          <strong>Location:</strong> Latitude:
+          {{ deliveryDetails?.location?.lat ?? "N/A" }}, Longitude:
+          {{ deliveryDetails?.location?.lng ?? "N/A" }}
+        </p>
+        <p><strong>Status:</strong> {{ deliveryDetails?.status ?? "open" }}</p>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <h2>Map</h2>
+      <div
+        id="map"
+        style="height: 400px"
+        *ngIf="isDeliveryOn; else noDelivery"
+      ></div>
+      <ng-template #noDelivery>
+        <p>No delivery found for this package.</p>
+      </ng-template>
+      <!-- You can integrate a map API like Google Maps here -->
+    </div>
+  </div>
+
+  <p style="margin-top: 80px; margin-left: 120px" *ngIf="apiLoading">
+    Loading Package Details.
+  </p>
+  <div class="overlay" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- 
+  <p style="margin-top: 80px; margin-left: 120px" *ngIf="APIErrors">
+    {{ apimessage }}
+  </p> -->
+</div>
