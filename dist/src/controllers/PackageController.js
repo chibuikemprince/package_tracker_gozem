@@ -70,8 +70,9 @@ const updatePackage = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.updatePackage = updatePackage;
 // Get all packages with pagination
 const getAllPackages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const { page = 1, limit = 10 } = req.body;
-    let activeDeliveryId = req.body.active_delivery_set.toLowerCase() == "true";
+    let activeDeliveryId = ((_a = req.body.active_delivery_set) === null || _a === void 0 ? void 0 : _a.toLowerCase()) == "true";
     // console.log({ activeDeliveryId });
     let query = {};
     if (activeDeliveryId) {

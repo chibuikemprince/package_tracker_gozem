@@ -42,12 +42,13 @@ process.on("uncaughtException", (err: Error) => {
   LogError(error);
 });
 
+const DB_URL = process.env.MONGO_DB;
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_DB || "")
+  .connect(DB_URL || "")
   .then((sucess: any) => {
     // Start the server
-
+    console.log({ DB_URL });
     setupDeliverySocket(server);
 
     server.listen(PORT, () => {
