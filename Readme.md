@@ -78,7 +78,7 @@ Follow these steps to run the backend application locally:
 The project structure is organized as follows:
 
 ```
-dist
+
 ├─ src
 │  ├─ controllers
 │  │  ├─ DeliveryController.ts
