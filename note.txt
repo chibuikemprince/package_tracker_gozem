@@ -1,0 +1,2 @@
+conistency wit use of http code to describe the situation of requests and responses
+delivery status mst follow this protocol and order [open, picked-up, in-transit, delivered, failed]
