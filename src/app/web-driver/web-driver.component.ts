@@ -80,6 +80,7 @@ export class WebDriverComponent implements AfterViewInit {
   }
 
   trackPackage(): void {
+    this.apimessage = '';
     this.updateLocation = false;
     if (this.packageId.length > 0) {
       this.apiLoading = true;

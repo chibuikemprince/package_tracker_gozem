@@ -65,6 +65,8 @@ export class WebTrackerComponent implements AfterViewInit {
   }
 
   trackPackage(): void {
+    this.apimessage = '';
+
     if (this.packageId.length > 0) {
       this.apiLoading = true;
       this.APIErrors = false;
