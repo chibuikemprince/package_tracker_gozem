@@ -46,7 +46,8 @@ Follow these steps to run the backend application locally:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/package-tracking-backend.git
+   git clone https://github.com/chibuikemprince/package_tracker_gozem.git
+   git checkout backend
    cd package-tracking-backend
    ```
 ````
@@ -156,7 +157,7 @@ The Package Tracking Backend is designed to deliver a robust and efficient solut
 
 **Author:** Chibuikem Prince Chisomaga  
 **License:** ISC License  
-**Repository:** [GitHub Repository](https://github.com/chibuikemprince/package-tracking-backend.git)
+**Repository:** [GitHub Repository](hhttps://github.com/chibuikemprince/package_tracker_gozem.git)
 
 ```
 
