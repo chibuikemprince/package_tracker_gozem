@@ -139,22 +139,7 @@ export class WebTrackerComponent implements AfterViewInit {
                       data.delivery_object.location.lng
                     );
                   }
-
-                  // location
-                  // :
-                  // {lat: 4.8472226, lng: 6.974604}
-                  // package_id
-                  // :
-                  // "672337f7c82225621948dc29"
-                  // pickup_time
-                  // :
-                  // "2024-10-31T09:11:22.146Z"
-                  // start_time
-                  // :
-                  // "2024-10-31T09:00:44.126Z"
-                  // status
-                  // :
-                  // "picked-up"
+ 
                 }
               });
 

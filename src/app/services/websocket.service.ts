@@ -16,17 +16,17 @@ export class WebSocketService {
     this.socket = io(this.WsUrl); // Adjust the Socket.IO server URL as needed
 
     // Listen for delivery_changed events from the server
-    this.socket.on('delivery_changed', (data) => {
+    this.socket.on('delivery_changed', (data: any) => {
       this.deliveryChangedSubject.next(data);
     });
 
     // Listen for delivery_changed events from the server
-    this.socket.on('status_changed', (data) => {
+    this.socket.on('status_changed', (data: any) => {
       this.statusChangedSubject.next(data);
     });
 
     // Listen for delivery_changed events from the server
-    this.socket.on('location_changed', (data) => {
+    this.socket.on('location_changed', (data: any) => {
       this.locationChangedSubject.next(data);
     });
   }
