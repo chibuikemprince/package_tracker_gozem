@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const DeliveryController_1 = require("../controllers/DeliveryController");
+const ValidationMiddleware_1 = require("../middleware/ValidationMiddleware");
+const router = (0, express_1.Router)();
+router.get("/", DeliveryController_1.getAllDeliveries);
+router.get("/:deliveryId", DeliveryController_1.getDeliveryById);
+router.post("/", ValidationMiddleware_1.validateCreateDelivery, DeliveryController_1.createDelivery);
+router.put("/:deliveryId", ValidationMiddleware_1.validateUpdateDelivery, DeliveryController_1.updateDelivery);
+router.delete("/:deliveryId", DeliveryController_1.deleteDelivery);
+exports.default = router;
