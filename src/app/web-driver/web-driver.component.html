@@ -1,1 +1,135 @@
-<p>web-driver works!</p>
+<div class="container">
+  <h1>Web Driver</h1>
+
+  <!-- Alert Message -->
+  <div *ngIf="apimessage.length > 0" class="alert" role="alert">
+    {{ apimessage }}
+  </div>
+
+  <div class="input-section">
+    <input
+      type="text"
+      class="package-input"
+      placeholder="Enter Delivery Tracking ID"
+      [(ngModel)]="packageId"
+    />
+    <button class="track-btn" (click)="trackPackage()">View</button>
+  </div>
+
+  <div *ngIf="packageFetched && APIErrors == false" class="details-section">
+    <div class="left-section">
+      <div class="package-details">
+        <h2>Package Details</h2>
+        <p>
+          <strong>Description:</strong>
+          {{ packageDetails?.description ?? "N/A" }}
+        </p>
+        <p><strong>Weight:</strong> {{ packageDetails?.weight ?? "N/A" }} kg</p>
+        <p>
+          <strong>Dimensions (width x height x depth):</strong>
+          {{ packageDetails?.width ?? "N/A" }} x
+          {{ packageDetails?.height ?? "N/A" }} x
+          {{ packageDetails?.depth ?? "N/A" }} cm
+        </p>
+        <p>
+          <strong>From:</strong> {{ packageDetails?.from_name ?? "N/A" }},
+          {{ packageDetails?.from_address ?? "N/A" }}
+        </p>
+        <p>
+          <strong>To:</strong> {{ packageDetails?.to_name ?? "N/A" }},
+          {{ packageDetails?.to_address ?? "N/A" }}
+        </p>
+      </div>
+
+      <div *ngIf="isDeliveryOn; else noDelivery" class="delivery-details">
+        <h2>Delivery Information</h2>
+        <p>
+          <strong>Package ID:</strong>
+          {{ deliveryDetails?._id }}
+        </p>
+        <p>
+          <strong>Pickup Time:</strong>
+          {{
+            deliveryDetails?.pickup_time
+              ? deliveryDetails?.pickup_time
+              : "Not picked up"
+          }}
+        </p>
+        <p>
+          <strong>Start Time:</strong>
+          {{
+            deliveryDetails?.start_time
+              ? deliveryDetails?.start_time
+              : "Not in transit yet."
+          }}
+        </p>
+        <p>
+          <strong>End Time:</strong>
+          {{
+            deliveryDetails?.end_time
+              ? deliveryDetails?.end_time
+              : "Not delivered yet"
+          }}
+        </p>
+        <p>
+          <strong>Location:</strong> Latitude:
+          {{ deliveryDetails?.location?.lat ?? "N/A" }}, Longitude:
+          {{ deliveryDetails?.location?.lng ?? "N/A" }}
+        </p>
+        <p><strong>Status:</strong> {{ deliveryDetails?.status ?? "open" }}</p>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <h2>Map</h2>
+      <div
+        id="map"
+        style="height: 400px"
+        *ngIf="isDeliveryOn; else noDelivery"
+      ></div>
+      <ng-template #noDelivery>
+        <p>No delivery found for this package.</p>
+      </ng-template>
+    </div>
+
+    <div class="right-section" *ngIf="isDeliveryOn">
+      <h2>Delivery Status</h2>
+      <button
+        class="status-btn picked-up"
+        (click)="updateStatus('picked-up')"
+        [disabled]="currentStatus.toLowerCase() != 'open'"
+      >
+        Picked Up
+      </button>
+      <button
+        class="status-btn in-transit"
+        (click)="updateStatus('in-transit')"
+        [disabled]="currentStatus.toLowerCase() != 'picked-up'"
+      >
+        In Transit
+      </button>
+      <button
+        class="status-btn delivered"
+        (click)="updateStatus('delivered')"
+        [disabled]="currentStatus.toLowerCase() != 'in-transit'"
+      >
+        Delivered
+      </button>
+      <button
+        class="status-btn failed"
+        (click)="updateStatus('failed')"
+        [disabled]="currentStatus.toLowerCase() != 'in-transit'"
+      >
+        Failed
+      </button>
+    </div>
+  </div>
+
+  <p style="margin-top: 80px; margin-left: 120px" *ngIf="apiLoading">
+    Loading Package Details.
+  </p>
+
+  <div class="overlay" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+</div>

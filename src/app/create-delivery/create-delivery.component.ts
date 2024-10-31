@@ -33,7 +33,7 @@ export class CreateDeliveryComponent implements OnInit {
     this.loading = true;
     try {
       const response = await this.packageService
-        .getAllPackages(this.currentPage)
+        .getAllPackages(this.currentPage, false)
         .toPromise();
 
       if (!response || response.data.length === 0) {

@@ -13,8 +13,13 @@ export class PackageService {
 
   constructor(private http: HttpClient) {}
 
-  getAllPackages(page: number): Observable<HTTPResponse> {
-    return this.http.get<HTTPResponse>(`${this.baseUrl}/package?page=${page}`);
+  getAllPackages(
+    page: number,
+    active_delivery_set: boolean = false
+  ): Observable<HTTPResponse> {
+    return this.http.get<HTTPResponse>(
+      `${this.baseUrl}/package?page=${page}&active_delivery_set=${active_delivery_set}`
+    );
   }
 
   getPackageDetails(packageId: string): Observable<any> {

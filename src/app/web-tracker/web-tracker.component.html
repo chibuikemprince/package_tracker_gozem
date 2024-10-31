@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Package Tracking</h1>
   <!-- Alert Message -->
-  <div *ngIf="APIErrors" class="alert" role="alert">
+  <div *ngIf="APIErrors || apimessage.length > 0" class="alert" role="alert">
     {{ apimessage }}
   </div>
   <div class="input-section">
@@ -56,7 +56,9 @@
         <p>
           <strong>Start Time:</strong>
           {{
-            deliveryDetails?.start_time ? deliveryDetails?.start_time : "N/A"
+            deliveryDetails?.start_time
+              ? deliveryDetails?.start_time
+              : "Not in transit yet."
           }}
         </p>
         <p>

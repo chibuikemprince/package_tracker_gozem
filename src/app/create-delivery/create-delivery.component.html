@@ -2,9 +2,8 @@
   <div class="spinner"></div>
 </div>
 
-  <div *ngIf="alertMessage.length > 0" class="alert">{{ alertMessage }}</div>
+<div *ngIf="alertMessage.length > 0" class="alert">{{ alertMessage }}</div>
 
-  
 <div class="package-list">
   <h2>Packages</h2>
   <p class="description">
@@ -22,6 +21,7 @@
       <p>Weight: {{ package.weight }} kg</p>
       <p>From: {{ package.from_name }}, {{ package.from_address }}</p>
       <p>To: {{ package.to_name }}, {{ package.to_address }}</p>
+      <p>Package ID: {{ package._id }}</p>
     </li>
   </ul>
 
@@ -41,5 +41,4 @@
   <div *ngIf="loadMoreVisible" (click)="loadMore()" class="load-more">
     Load More
   </div>
-
 </div>

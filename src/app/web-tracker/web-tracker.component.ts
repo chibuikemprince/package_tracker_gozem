@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as L from 'leaflet';
+import { WebSocketService } from '../services/websocket.service';
 
 @Component({
   selector: 'app-web-tracker',
@@ -32,7 +33,8 @@ export class WebTrackerComponent implements AfterViewInit {
 
   constructor(
     private packageService: PackageService,
-    private deliveryService: DeliveryService
+    private deliveryService: DeliveryService,
+    private webSocketService: WebSocketService
   ) {}
   private map!: L.Map;
   private marker!: L.Marker;
@@ -81,6 +83,78 @@ export class WebTrackerComponent implements AfterViewInit {
             this.packageFetched = true;
             this.apiLoading = false;
             this.deliveryId = <string>this.packageDetails?.active_delivery_id;
+
+            this.webSocketService
+              .getDeliveryChangedUpdates()
+              .subscribe((data) => {
+                console.log('Delivery changed:', data);
+                if (data.delivery_id == this.deliveryId) {
+                  console.log('This is my delivery status change');
+                  this.apimessage =
+                    'Your package has been delivered successfully';
+                  setTimeout(() => {
+                    this.apimessage = '';
+                  }, 5000);
+                }
+              });
+
+            this.webSocketService
+              .getStatusChangedUpdates()
+              .subscribe((data) => {
+                console.log('Status changed:', data);
+                if (data.delivery_id == this.deliveryId) {
+                  if (data.status != 'delivered') {
+                    this.apimessage =
+                      'Your package delivery is currently ' + data.status;
+                  }
+                  setTimeout(() => {
+                    this.apimessage = '';
+                  }, 5000);
+                  console.log('This is my delivery status change');
+                }
+              });
+
+            this.webSocketService
+              .getLocationChangedUpdates()
+              .subscribe((data) => {
+                console.log('Location changed:', data);
+                if (data.delivery_object.package_id == this.packageId) {
+                  console.log('This is my package.');
+                  this.deliveryDetails = data.delivery_object;
+                  this.deliveryId = data.delivery_object._id;
+
+                  if (this.deliveryDetails?.status == 'open') {
+                    this.isDeliveryOn = true;
+                    setTimeout(() => {
+                      this.initMap(
+                        data.delivery_object.location.lat,
+                        data.delivery_object.location.lng
+                      );
+                    }, 1000);
+                  } else {
+                    this.initMap(
+                      data.delivery_object.location.lat,
+                      data.delivery_object.location.lng
+                    );
+                  }
+
+                  // location
+                  // :
+                  // {lat: 4.8472226, lng: 6.974604}
+                  // package_id
+                  // :
+                  // "672337f7c82225621948dc29"
+                  // pickup_time
+                  // :
+                  // "2024-10-31T09:11:22.146Z"
+                  // start_time
+                  // :
+                  // "2024-10-31T09:00:44.126Z"
+                  // status
+                  // :
+                  // "picked-up"
+                }
+              });
 
             if (this.packageDetails?.active_delivery_id) {
               this.isDeliveryOn = true;
