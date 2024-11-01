@@ -1,0 +1,10 @@
+version: 1
+services:
+  - type: static
+    name: package-tracker-gozem-web. # Replace with your app name
+    env: static
+    buildCommand: ls # Adjust if your build command is different
+    publishDir: ./dist # Ensure this points to your dist folder
+    routes:
+      - src: /*
+        dest: ./dist/package-tracker/browser/index.html
