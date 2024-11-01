@@ -14,6 +14,7 @@ const routes: Routes = [
   //{ path: 'web-admin-home', component: WebAdminHomeComponent },
   { path: 'create-package', component: CreatePackageComponent },
   { path: 'create-delivery', component: CreateDeliveryComponent },
+  { path: '**', component: WebTrackerComponent },
 ];
 
 @NgModule({
