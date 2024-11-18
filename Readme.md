@@ -1,5 +1,3 @@
-Here's a structured `README.md` template for your `package-tracking-backend` project, incorporating the provided `package.json` details and file tree:
-
 ````markdown
 # Package Tracking Backend
 
