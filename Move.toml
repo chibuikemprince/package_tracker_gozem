@@ -1,0 +1,16 @@
+[package]
+name = "package_tracker_v3"
+version = "1.0.1"
+authors = []
+
+[addresses]
+hello ="0xf424262169d2828dfeff2313efdc0bd21507839e87f9c1af3e5175711b437992"
+
+[dev-addresses]
+
+[dependencies.SupraFramework]
+git = "https://github.com/Entropy-Foundation/aptos-core.git"
+rev = "dev"
+subdir = "aptos-move/framework/supra-framework"
+
+[dev-dependencies]
