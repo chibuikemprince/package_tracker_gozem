@@ -12,8 +12,9 @@ You can connect with me on LinkedIn: [Chibuikem Prince Chisomaga](https://www.li
 
 #### **Useful Links**
 
-- **Backend Repository**: https://github.com/chibuikemprince/package_tracker_gozem/tree/backend
-- **Frontend Repository**: https://github.com/chibuikemprince/package_tracker_gozem/tree/fe
+- **Backend Branch**: https://github.com/chibuikemprince/package_tracker_gozem/tree/backend
+- **Frontend Branch**: https://github.com/chibuikemprince/package_tracker_gozem/tree/fe
+- **Smart Contract Branch**: https://github.com/chibuikemprince/package_tracker_gozem/tree/smartcontract
 - **Project Live URL**: https://package-tracker-gozem-web.onrender.com
 - **Supra Blockchain Documentation**: https://docs.supra.com/
 
